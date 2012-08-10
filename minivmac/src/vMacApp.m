@@ -35,11 +35,14 @@ IMPORTPROC MyMouseButtonSet(blnr down);
     [self setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:NO];
     NSFileManager * fm = [NSFileManager defaultManager];
     NSBundle * mb = [NSBundle mainBundle];
+    NSArray * docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString * documentsDirectory = [docPaths objectAtIndex:0];
     openAlerts = [[NSMutableSet setWithCapacity:5] retain];
     searchPaths = [[NSArray arrayWithObjects:
                     [mb resourcePath],
                     [NSHomeDirectory() stringByAppendingPathComponent:@"Library/MacOSClassic"],
                     @"/Library/MacOSClassic",
+                    documentsDirectory,
                     nil] retain];
     initOk = [self initEmulation];
     // eject sound
